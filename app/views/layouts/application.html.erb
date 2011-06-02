@@ -7,8 +7,12 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+  <%= link_to "New Geaket", new_geaket_path %>
+  <% flash.each do |key, value| %>
+<div class="flash <%= key %>"><%= value %></div>
+<% end %>
 
 <%= yield %>
-
+<%= debug(params) if Rails.env.development? %>
 </body>
 </html>

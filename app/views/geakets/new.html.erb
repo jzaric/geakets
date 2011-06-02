@@ -1,0 +1,7 @@
+<%= form_for @geaket do |f| %>
+<%= f.text_field :title, :error => @geaket.errors[:title] %>
+<div>
+<%= f.text_area :content, :error => @geaket.errors[:content] %>
+</div>
+<%= f.submit "Submit" %>
+<% end %>
