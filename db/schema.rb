@@ -10,12 +10,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110527081455) do
+ActiveRecord::Schema.define(:version => 20110609210741) do
 
   create_table "geakets", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
     t.string   "title"
     t.string   "content"
     t.integer  "view_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "topics", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "nick_name"
+    t.string   "email"
+    t.string   "thumb_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
