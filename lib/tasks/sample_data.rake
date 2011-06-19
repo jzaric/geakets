@@ -16,5 +16,9 @@ namespace :db do
     100.times do |n|
       User.find(n+1).geakets.create!(:topic_id => 1, :title => Faker::Lorem.sentence(1), :content => Faker::Lorem.sentence(2))
     end
+
+    100.times do |n|
+      User.find(n+1).votes<<(Geaket.find(n+1))
+    end
   end
 end
