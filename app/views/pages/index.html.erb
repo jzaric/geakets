@@ -1,13 +1,16 @@
-<% @geakets.each do |geaket| %>
-<div style="width: 193px; height: 80px; margin-right: 10px; margin-bottom: 10px; background-color: White; float: left; -moz-border-radius: 6px; border-radius: 6px; border: 1px solid Black;">
-            <div style="padding: 5px;">
-                <div style="color: #00358b; font-weight: bold; font-size: 16px; overflow:hidden;"><a href="/Geaket?id=${GeaketId}" class="geaket_subject">${Title}</a></div>
-                <img src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/41773_546484564_6534_q.jpg" style="float: left;" alt="profile photo" />
-                <div style="color: #00358b; font-size: 14px; line-height: 18px; margin-left: 54px;" class="geaket_user">by ${UserName}</div>
-                <div style="color: #666; font-size: 11pt; line-height: 12pt; margin-left: 54px;">${ViewCount} views</div>
-                <div style="color: #000; font-size: 13pt; line-height: 14pt; margin-left: 54px;">${VoteCount} votes</div>
-            </div>
-        </div>
-<span><%= geaket.title %></span>, <%= geaket.created_at %><br/>
-<% end %>
-<%= will_paginate(@geakets) %>
+<div style="width: 625px; margin-top: 10px;" class="green_section">
+  <div class="section_header">
+  </div>
+  <div style="font-family: 'Droid Sans', arial, serif;" class="section_content">
+    <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">
+      Awesomest</h2>
+    <div style="padding-top: 10px;">
+      <%= render :partial => "shared/geaket", :collection => @geakets %>
+    </div>
+    <div style="clear: both; font-weight: bold; text-align: right; padding-right: 10px;">
+      <%= will_paginate(@geakets) %>
+    </div>
+  </div>
+  <div class="section_footer">
+  </div>
+</div>

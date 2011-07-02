@@ -12,13 +12,24 @@ namespace :db do
         :thumb_url => "http://static.ak.fbcdn.net/rsrc.php/v1/yp/r/kk8dc2UJYJ4.png")
     end
 
-    User.find(1).topics.create!(:title => "test", :active => true)
     100.times do |n|
-      User.find(n+1).geakets.create!(:topic_id => 1, :title => Faker::Lorem.sentence(1), :content => Faker::Lorem.sentence(2))
+      User.find(n+1).geakets.create!(:topic_id => 1, :title => Faker::Lorem.sentence(1), :content => Faker::Lorem.sentence(2), :view_count => n)
     end
 
     100.times do |n|
       User.find(n+1).votes<<(Geaket.find(n+1))
     end
+
+    100.times do |n|
+      tag = Tag.create!(:name => "#{Faker::Lorem.words(1)}_#{n + 1}")
+      Geaket.find(n+1).tags<<(tag);
+      if n > 50
+        Geaket.find(n).tags<<(tag);
+      end
+      if n > 75
+        Geaket.find(n-1).tags<<(tag);
+      end
+    end
+
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110619195231) do
+ActiveRecord::Schema.define(:version => 20110702001142) do
 
   create_table "geakets", :force => true do |t|
     t.integer  "user_id"
@@ -22,13 +22,20 @@ ActiveRecord::Schema.define(:version => 20110619195231) do
     t.datetime "updated_at"
   end
 
-  create_table "topics", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "title"
-    t.boolean  "active"
+  create_table "geakets_tags", :id => false, :force => true do |t|
+    t.integer  "geaket_id"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "nick_name"
