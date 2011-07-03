@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def popular_tags
-    Tag.select("DISTINCT tags.*, COUNT(tags.id) as geakets_count").joins(:geakets).group(Tag.column_names.map{|column| "#{Tag.table_name}.#{column}"}.join(", ")).order(get_proper_sql_random_str).limit(32)
+    Tag.select("tags.*, COUNT(tags.id) as geakets_count").joins(:geakets).group(Tag.column_names.map{|column| "#{Tag.table_name}.#{column}"}.join(", ")).order(get_proper_sql_random_str).limit(32)
 #    all(
 #      :select => "tags.*, COUNT(tags.id) as geakets_count",
 #      :joins => "INNER JOIN geakets_tags ON tags.id = geakets_tags.tag_id",
@@ -20,7 +20,7 @@ module ApplicationHelper
 
   def most_popular_tag_count
     if @most_popular_tag_count.nil?
-      most_popular_tag = Tag.select("DISTINCT tags.*, COUNT(tags.id) as geakets_count").joins(:geakets).group(Tag.column_names.map{|column| "#{Tag.table_name}.#{column}"}.join(", ")).order("geakets_count DESC").limit(1).first
+      most_popular_tag = Tag.select("tags.*, COUNT(tags.id) as geakets_count").joins(:geakets).group(Tag.column_names.map{|column| "#{Tag.table_name}.#{column}"}.join(", ")).order("geakets_count DESC").limit(1).first
 #      Tag.first(
 #        :select => "tags.*, COUNT(tags.id) as geakets_count",
 #        :joins => "INNER JOIN geakets_tags ON tags.id = geakets_tags.tag_id",
