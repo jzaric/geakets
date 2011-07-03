@@ -1,6 +1,15 @@
 module ApplicationHelper
+  def get_proper_sql_random_str
+    case ActiveRecord::Base.connection.adapter_name
+    when "PostgreSQL"
+      return "RANDOM()"
+    else
+      return "RAND()"
+    end
+  end
+
   def popular_tags
-    Tag.select("tags.*, COUNT(tags.id) as geakets_count").joins(:geakets).group("tags.id").order("RAND()").limit(32)
+    Tag.select("tags.*, COUNT(tags.id) as geakets_count").joins(:geakets).group("tags.id").order(get_proper_sql_random_str).limit(32)
 #    all(
 #      :select => "tags.*, COUNT(tags.id) as geakets_count",
 #      :joins => "INNER JOIN geakets_tags ON tags.id = geakets_tags.tag_id",
