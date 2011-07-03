@@ -3,8 +3,6 @@ class CreateGeaketsTags < ActiveRecord::Migration
     create_table :geakets_tags, :id => false do |t|
       t.integer :geaket_id
       t.integer :tag_id
-
-      t.timestamps
     end
   end
 

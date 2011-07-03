@@ -62,8 +62,8 @@
                     <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">Tags</h2>
                     <div style="padding-top: 10px; width: 280px; color: White;">
                       <ul id="tags">
-                      <% Tag.all.each do |tag| %>
-                      <li><a href="#"><%= tag.name %></a></li>
+                      <% popular_tags.each do |tag| %>
+                        <li><a href="#" class="tag<%= tag_level(tag) %>"><%= tag.name %></a></li>
                       <% end %>
                       </ul>
                     </div>

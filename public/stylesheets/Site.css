@@ -226,14 +226,15 @@ body
     margin: 0;
     padding: 0;
     font-size: 70%;
+    text-align: center;
+    display: block;
 }
 
 #tags li
 {
-    list-style-type: none;
-    float: left;
-    margin: 0 10px;
-    height: 35px;
+    list-style: none;
+    display: inline-block;
+    margin: 5px 10px;
 }
 
 #tags li a
@@ -246,4 +247,29 @@ body
 {
     text-decoration: underline;
     color: White;
+}
+
+.tag1
+{
+    font-size: 1em;
+}
+
+.tag2
+{
+    font-size: 1.2em;
+}
+
+.tag3
+{
+    font-size: 1.4em;
+}
+
+.tag4
+{
+    font-size: 1.6em;
+}
+
+.tag5
+{
+    font-size: 1.8em;
 }

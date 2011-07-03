@@ -4,6 +4,6 @@ class Geaket < ActiveRecord::Base
 
   belongs_to :user
 
-  has_and_belongs_to_many :voters, :class_name => "User", :uniq => true, :join_table => "votes"
-  has_and_belongs_to_many :tags, :class_name => "Tag", :uniq => true, :join_table => "geakets_tags"
+  has_and_belongs_to_many :voters, :join_table => "votes", :class_name => "User", :uniq => true
+  has_and_belongs_to_many :tags, :join_table => "geakets_tags", :class_name => "Tag", :uniq => true
 end

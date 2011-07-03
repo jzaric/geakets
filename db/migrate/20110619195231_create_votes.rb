@@ -3,8 +3,6 @@ class CreateVotes < ActiveRecord::Migration
     create_table :votes, :id => false do |t|
       t.integer :user_id
       t.integer :geaket_id
-
-      t.timestamps
     end
   end
 
