@@ -1,11 +1,12 @@
 module ApplicationHelper
   def popular_tags
-    Tag.all(
-      :select => "tags.*, COUNT(tags.id) as geakets_count",
-      :joins => "INNER JOIN geakets_tags ON tags.id = geakets_tags.tag_id",
-      :group => "tags.id",
-      #:order => "RAND()",
-      :limit => 32)
+    Tag.select("tags.*, COUNT(tags.id) as geakets_count").joins(:geakets).group("tags.id").order("RAND()").limit(32)
+#    all(
+#      :select => "tags.*, COUNT(tags.id) as geakets_count",
+#      :joins => "INNER JOIN geakets_tags ON tags.id = geakets_tags.tag_id",
+#      :group => "tags.id",
+#      #:order => "RAND()",
+#      :limit => 32)
   end
 
   def most_popular_tag_count
