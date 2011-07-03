@@ -4,7 +4,7 @@ module ApplicationHelper
       :select => "tags.*, COUNT(tags.id) as geakets_count",
       :joins => "INNER JOIN geakets_tags ON tags.id = geakets_tags.tag_id",
       :group => "tags.id",
-      :order => "RAND()",
+      #:order => "RAND()",
       :limit => 32)
   end
 
