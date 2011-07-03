@@ -36,6 +36,6 @@ module ApplicationHelper
     return @most_popular_tag_count
   end
   def tag_level(tag)
-    return (5.0 * tag.geakets_count / most_popular_tag_count).ceil
+    return (5.0 * tag.geakets_count.to_i / most_popular_tag_count.to_i).ceil
   end
 end
