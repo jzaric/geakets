@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def popular_tags
-    Tag.select("DISTINCT tags.*, COUNT(tags.id) as geakets_count").joins(:geakets).group("tags.id").order(get_proper_sql_random_str).limit(32)
+    Tag.select("DISTINCT tags.*, #{get_proper_sql_random_str} as randomizer, COUNT(tags.id) as geakets_count").joins(:geakets).group("tags.id").order("randomizer").limit(32)
 #    all(
 #      :select => "tags.*, COUNT(tags.id) as geakets_count",
 #      :joins => "INNER JOIN geakets_tags ON tags.id = geakets_tags.tag_id",
