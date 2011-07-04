@@ -1,0 +1,22 @@
+<script>
+  $(function(){
+  prettyPrint();
+  });
+</script>
+<div style="width: 625px; margin-top: 10px;" class="green_section">
+  <div class="section_header">
+  </div>
+  <div style="font-family: 'Droid Sans', arial, serif;" class="section_content">
+    <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">
+      <%= @geaket.title %></h2>
+    <div style="padding-right: 10px;">
+      <pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: White; min-height: 128px; overflow: auto;" class="prettyprint"><%= @geaket.content %></pre>
+    </div>
+<%#= render :partial => "shared/geaket", :locals => { :geaket => @geaket } %>
+    <div style="clear: both; font-weight: bold; text-align: right; padding-right: 10px;">
+
+    </div>
+  </div>
+  <div class="section_footer">
+  </div>
+</div>
