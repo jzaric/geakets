@@ -1,7 +1,92 @@
+<script type="text/javascript">
+  $(function () {
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/twilight");
+
+    if(editor.getSession().getValue() == ""){
+      editor.getSession().setValue('print("Type Your Geaket Here");');
+    }
+    editor.on('focus', function(){
+      if(editor.getSession().getValue() == 'print("Type Your Geaket Here");'){
+        editor.getSession().setValue('');
+      }
+    });
+    editor.on('blur', function(){
+      if(editor.getSession().getValue() == ""){
+        editor.getSession().setValue('print("Type Your Geaket Here");');
+      }
+    });
+
+    $('#editor').qtip({
+       content: "Type code here", // Set the tooltip content to the current corner
+       position: {
+          corner: {
+             tooltip: "bottomRight", // Use the corner...
+             target: "topRight" // ...and opposite corner
+          }
+       },
+       show: {
+          when: false, // Don't specify a show event
+          ready: false // Show the tooltip when ready
+       },
+       hide: false, // Don't specify a hide event
+       style: {
+          border: {
+             //width: 5,
+             radius: 10
+          },
+          //padding: 10,
+          textAlign: 'center',
+          tip: true, // Give it a speech bubble tip with automatic corner detection
+          name: 'cream' // Style it according to the preset 'cream' style
+       }
+    });
+
+    $('#geaket_title').filter(function(){
+      return $(this).val() == "" || $(this).val() == "Type title here";
+    }).addClass("watermark").val("Type title here");
+
+    $('#geaket_title').focus(function(){
+      $(this).filter(function(){
+        return $(this).val() == "" || $(this).val() == "Type title here";
+      }).removeClass("watermark").val("");
+    });
+    $('#geaket_title').blur(function(){
+      $(this).filter(function(){
+        return $(this).val() == "";
+      }).addClass("watermark").val("Type title here");
+    });
+
+    $('#new_geaket').submit(function (e) {
+      //var session = editor.getSession();
+      $('#geaket_content').val(editor.getSession().getValue());
+    });
+  });
+</script>
 <%= form_for @geaket do |f| %>
-<%= f.text_field :title, :error => @geaket.errors[:title] %>
-<div>
-<%= f.text_area :content, :error => @geaket.errors[:content] %>
-</div>
-<%= f.submit "Submit" %>
+  <div style="width: 625px; margin-top: 10px;" class="green_section">
+    <div class="section_header">
+    </div>
+    <div style="font-family: 'Droid Sans', arial, serif;" class="section_content">
+      <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">
+        Tell it your way...</h2>
+      <div style="padding-right: 10px; padding-top: 10px;">
+        <div style="padding-bottom: 10px;">
+          <%= f.text_field :title, :error => @geaket.errors[:title] %>
+        </div>
+        <div style="padding-bottom: 10px;">
+          <pre id="editor" style="background-color: #E8E8E8;"></pre>
+          <%= f.hidden_field :content %>
+        </div>
+        <div style="padding-bottom: 10px;">
+          <%= f.text_field :tags %>
+        </div>
+        <div style="clear: both; font-weight: bold; text-align: right;">
+          <%= f.submit "Submit" %>
+        </div>
+      </div>
+    </div>
+    <div class="section_footer">
+    </div>
+  </div>
 <% end %>

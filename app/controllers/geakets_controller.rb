@@ -4,7 +4,7 @@ class GeaketsController < ApplicationController
   end
 
   def show
-    
+    @geaket = Geaket.find(params[:id])
   end
 
   def new
@@ -12,7 +12,7 @@ class GeaketsController < ApplicationController
   end
 
   def create
-    @geaket = Geaket.create(params[:geaket])
+    @geaket = User.find(1).geakets.create(params[:geaket])
     if @geaket.save
       flash[:success] = "Geaket added!"
       redirect_to :root
