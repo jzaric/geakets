@@ -1,6 +1,6 @@
-<script>
+<script type="text/javascript">
   $(function(){
-  prettyPrint();
+    prettyPrint();
   });
 </script>
 <div style="width: 625px; margin-top: 10px;" class="green_section">
@@ -14,7 +14,7 @@
     </div>
 <%#= render :partial => "shared/geaket", :locals => { :geaket => @geaket } %>
     <div style="clear: both; font-weight: bold; text-align: right; padding-right: 10px;">
-
+      <%= @geaket.tags.map{|tag| tag.name}.join(", ") %>
     </div>
   </div>
   <div class="section_footer">

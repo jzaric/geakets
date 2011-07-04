@@ -274,9 +274,20 @@ body
 
 /* add and edit */
 
+.geaket_editor td
+{
+    vertical-align: top;
+    padding-bottom: 10px;
+}
+
+.geaket_editor td:first-child
+{
+    color: white;
+}
+
 #editor
 {
-    width: 605px;
+    width: 100%;
     height: 600px;
     margin: 0;
     position: relative;
@@ -290,4 +301,13 @@ body
 {
     color: #cccccc;
     font-style: italic;
+}
+
+.errorExplanation
+{
+    margin: 10px 10px 0 0;
+    padding-left: 10px;
+    border: #ee4444 solid 1px;
+    background-color: #ffeeee;
+    color: #ee4444;
 }

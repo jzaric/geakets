@@ -1,19 +1,22 @@
 <script type="text/javascript">
+  var geaketCodeWatermark = 'print("Type geaket code here");';
+
   $(function () {
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/twilight");
+    editor.setTheme("ace/theme/clouds");
 
+    editor.getSession().setValue($('#geaket_content').val());
     if(editor.getSession().getValue() == ""){
-      editor.getSession().setValue('print("Type Your Geaket Here");');
+      editor.getSession().setValue(geaketCodeWatermark);
     }
     editor.on('focus', function(){
-      if(editor.getSession().getValue() == 'print("Type Your Geaket Here");'){
+      if(editor.getSession().getValue() == geaketCodeWatermark){
         editor.getSession().setValue('');
       }
     });
     editor.on('blur', function(){
       if(editor.getSession().getValue() == ""){
-        editor.getSession().setValue('print("Type Your Geaket Here");');
+        editor.getSession().setValue(geaketCodeWatermark);
       }
     });
 
@@ -42,24 +45,12 @@
        }
     });
 
-    $('#geaket_title').filter(function(){
-      return $(this).val() == "" || $(this).val() == "Type title here";
-    }).addClass("watermark").val("Type title here");
-
-    $('#geaket_title').focus(function(){
-      $(this).filter(function(){
-        return $(this).val() == "" || $(this).val() == "Type title here";
-      }).removeClass("watermark").val("");
-    });
-    $('#geaket_title').blur(function(){
-      $(this).filter(function(){
-        return $(this).val() == "";
-      }).addClass("watermark").val("Type title here");
-    });
+    $('#geaket_title').watermark("Type title here");
+    $('#geaket_tags').watermark("type, geaket, tags, here");
 
     $('#new_geaket').submit(function (e) {
-      //var session = editor.getSession();
-      $('#geaket_content').val(editor.getSession().getValue());
+      var editorValue = editor.getSession().getValue();
+      $('#geaket_content').val(editorValue == geaketCodeWatermark ? "" : editorValue);
     });
   });
 </script>
@@ -70,21 +61,28 @@
     <div style="font-family: 'Droid Sans', arial, serif;" class="section_content">
       <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">
         Tell it your way...</h2>
-      <div style="padding-right: 10px; padding-top: 10px;">
-        <div style="padding-bottom: 10px;">
-          <%= f.text_field :title, :error => @geaket.errors[:title] %>
-        </div>
-        <div style="padding-bottom: 10px;">
-          <pre id="editor" style="background-color: #E8E8E8;"></pre>
-          <%= f.hidden_field :content %>
-        </div>
-        <div style="padding-bottom: 10px;">
-          <%= f.text_field :tags %>
-        </div>
-        <div style="clear: both; font-weight: bold; text-align: right;">
-          <%= f.submit "Submit" %>
-        </div>
-      </div>
+      <%= f.error_messages :header_tag => "h3", :header_message => "Not saved!", :message => "See error details bellow:" %>
+      <table class="geaket_editor" style="padding-right: 10px; padding-top: 10px; width: 615px;">
+          <tr>
+            <td>Title:</td>
+            <td><%= f.text_field :title %></td>
+          </tr>
+          <tr>
+            <td>Content:</td>
+            <td>
+            <pre id="editor" style="background-color: #E8E8E8;"></pre>
+              <%= f.hidden_field :content %>
+            </td>
+          </tr>
+          <tr>
+            <td>Tags:</td>
+            <td><%= f.text_field :tag_list %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit "Submit" %></td>
+          </tr>
+        </table>
     </div>
     <div class="section_footer">
     </div>
