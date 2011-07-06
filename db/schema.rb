@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(:version => 20110702001142) do
 
   create_table "geakets", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "topic_id"
+    t.integer  "parent_id"
     t.string   "title"
     t.string   "content"
     t.integer  "view_count"

@@ -1,0 +1,21 @@
+<div style="width: 625px; margin-top: 10px;" class="gray_section">
+  <div class="section_header">
+  </div>
+  <div style="font-family: 'Droid Sans', arial, serif; padding-bottom: 10px;" class="section_content">
+    <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">Comments</h2>
+    <div style="padding-right: 10px;">
+      <pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: White; min-height: 128px; overflow: auto;" class="prettyprint"><%= geaket.content %></pre>
+    </div>
+<%#= render :partial => "shared/geaket", :locals => { :geaket => @geaket } %>
+    <div style="clear: both; font-weight: bold; text-align: right; padding-right: 10px;">
+      <div style="float: right; text-align: left;">
+        <img src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/41773_546484564_6534_q.jpg" style="float: left;" alt="profile photo" />
+        <span style="padding-left: 5px;"><%= geaket.user.nick_name %></span><br/>
+        <span style="padding-left: 5px;"><%= pluralize(geaket.user.geakets.count, "post") %></span>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+  </div>
+  <div class="section_footer">
+  </div>
+</div> 
