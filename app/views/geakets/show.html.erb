@@ -20,4 +20,13 @@
   <div class="section_footer">
   </div>
 </div>
-<%= render :partial => "shared/comment", :collection => @geaket.children, :as => :geaket %>
+<div style="width: 625px; margin-top: 10px;" class="gray_section">
+  <div class="section_header">
+  </div>
+  <div style="font-family: 'Droid Sans', arial, serif; padding-bottom: 10px;" class="section_content">
+    <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">Comments</h2>
+    <%= render :partial => "shared/comment", :collection => @geaket.children, :as => :geaket %>
+  </div>
+  <div class="section_footer">
+  </div>
+</div>

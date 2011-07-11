@@ -22,9 +22,6 @@
   </head>
   <body>
 <%#= link_to "New Geaket", new_geaket_path %>
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
     <table style="margin: auto;" cellpadding="0" cellspacing="0">
       <tr>
         <td class="left_shadow">
@@ -57,6 +54,9 @@
             </div>
             <div>
               <div class="left_column">
+                <% flash.each do |key, value| %>
+                  <div class="flash <%= key %>"><%= value %></div>
+                <% end %>
                 <%= yield %>
               </div>
               <div class="right_column">

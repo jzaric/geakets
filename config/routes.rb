@@ -1,4 +1,6 @@
 Geakets::Application.routes.draw do
+  devise_for :users
+
   resources :geakets
   # The priority is based upon order of creation:
   # first created -> highest priority.
