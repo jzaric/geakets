@@ -1,4 +1,6 @@
 Geakets::Application.routes.draw do
+  match 'about' => 'pages#about'
+
   devise_for :users
 
   resources :geakets

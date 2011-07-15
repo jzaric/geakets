@@ -1,0 +1,6 @@
+<div>
+  <%= gravatar_image_tag user.email, :class => :author_gravatar, :gravatar => { :size => 50 } %>
+  <div style="margin-left: 50px; padding-left: 5px;"><%= user.nickname %></div>
+  <div style="margin-left: 50px; padding-left: 5px;"><%= pluralize(user.geakets.count, "geaket") %></div>
+</div>
+<div style="clear: both;"></div>

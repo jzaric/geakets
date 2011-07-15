@@ -1,17 +1,29 @@
-<h2>Sign in</h2>
+<div style="width: 625px;" class="green_section">
+  <div class="section_header">
+  </div>
+  <div style="font-family: 'Droid Sans', arial, serif;" class="section_content">
+    <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">
+      Sign in</h2>
+    <div style="padding-top: 10px;">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <p><%= f.label :email %><br />
+          <%= f.email_field :email %></p>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
+        <p><%= f.label :password %><br />
+          <%= f.password_field :password %></p>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+        <% if devise_mapping.rememberable? -%>
+          <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+        <% end -%>
 
-  <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-  <% end -%>
+        <p><%= f.submit "Sign in" %></p>
+      <% end %>
+    </div>
+    <div style="clear: both; font-weight: bold; text-align: right; padding-right: 10px;">
+      <%= render :partial => "devise/shared/links" %>
+    </div>
+  </div>
+  <div class="section_footer">
+  </div>
+</div>
 
-  <p><%= f.submit "Sign in" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>

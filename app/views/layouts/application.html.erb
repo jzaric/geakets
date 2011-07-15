@@ -11,6 +11,7 @@
     <%= javascript_include_tag "ace-0.1.6/ace.js" %>
     <%= javascript_include_tag "ace-0.1.6/theme-clouds.js" %>
     <%= javascript_include_tag "jquery.qtip-1.0.0-rc3.min" %>
+    <%= javascript_include_tag "application.js" %>
 <%#= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
     <script type="text/javascript">
@@ -22,7 +23,7 @@
   </head>
   <body>
 <%#= link_to "New Geaket", new_geaket_path %>
-    <table style="margin: auto;" cellpadding="0" cellspacing="0">
+    <table style="margin: 0 auto 20px auto;" cellpadding="0" cellspacing="0">
       <tr>
         <td class="left_shadow">
         </td>
@@ -32,25 +33,15 @@
               <a href="/">
                 <img src="/images/Geaketslogo.png" style="border: none;" /></a>
               <div id="componentDiv" style="position: absolute; top: 10px; right: 0;">
-
-                <img src="" alt="profile thumbnail" />
-                <span style="font-size: x-large;"></span><br />
-                <a href="javascript:facebookLogout()">Log Out</a>
-                <script type="text/javascript">
-                  function logoutResponse(response) {
-                  if (response.errorCode == 0) {
-                  window.location = ''; //logout
-                  }
-                  }
-                </script>
-
-                <a href="javascript:facebookLogin()">
-                  <img src="/images/fb_button.png" /></a>
+                <% if user_signed_in? %>
+                  <%= link_to('Sign out', destroy_user_session_path, :method => 'delete', :class => "action") %>
+                <% else %>
+                  <%= link_to('Sign in', new_user_session_path, :class => "action") %><%= link_to('Sign up', new_user_registration_path, :class => "action") %>
+                <% end %>
               </div>
-              <div style="position: absolute; top: 10px; left: 390px; width: 156px; text-align: center; color: #676767; font-weight: bold; font-size: 20px;">
-                <a href="~/Home/About" runat="server">What is this?</a>
+              <div style="position: absolute; bottom: 0; right: 0; text-align: right; color: #676767; font-weight: bold; font-size: 20px;">
+                <%= link_to 'About', about_path, :class => "action" %>
               </div>
-              <hr/>
             </div>
             <div>
               <div class="left_column">
@@ -82,8 +73,8 @@
                 </div>
                 <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fapps%2Fapplication.php%3Fid%3D160901977301120&amp;width=300&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=true&amp;height=290" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:290px; margin-top: 10px;" allowTransparency="true"></iframe>
               </div>
-              <div style="height: 200px; clear: both;">
-                links
+              <div style="clear: both;">
+                <%= debug(params) if Rails.env.development? %>
               </div>
             </div>
           </div>
@@ -92,36 +83,5 @@
         </td>
       </tr>
     </table>
-    <div id="fb-root">
-    </div>
-    <script src="https://connect.facebook.net/en_US/all.js"></script>
-    <script type="text/javascript">
-      FB.init({ appId: '160901977301120', cookie: false, status: false, xfbml: false });
-      function facebookLogin() {
-      var url = 'https://www.facebook.com/dialog/oauth?display=popup&client_id=160901977301120&redirect_uri=';
-      var newwindow = window.open(url, 'name', 'left=' + Math.round(screen.width/2 - 300) + ', top=' + Math.round(screen.height/2 - 200) + ',width=600,height=400');
-      return;
-      FB.getLoginStatus(function (response) {
-      if (response.session) {
-      window.location = '?' + $.param(response.session);
-      } else {
-      FB.login();
-      }
-      });
-      }
-
-      function facebookLogout() {
-      window.location = '';
-      return;
-      FB.getLoginStatus(function (response) {
-      if (response.session) {
-      FB.logout(function () {
-      window.location = '';
-      });
-      }
-      });
-      }
-    </script>
-    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

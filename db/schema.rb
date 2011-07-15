@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20110711215341) do
   add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "nick_name"
+    t.string   "nickname"
     t.string   "email",                                 :default => "", :null => false
     t.string   "thumb_url"
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false

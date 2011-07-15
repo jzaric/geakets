@@ -3,18 +3,20 @@
     prettyPrint();
   });
 </script>
-<div style="width: 625px; margin-top: 10px;" class="green_section">
+<div style="width: 625px;" class="green_section">
   <div class="section_header">
   </div>
   <div style="font-family: 'Droid Sans', arial, serif;" class="section_content">
-    <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">
+    <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0; float: left; line-height: 50px;">
       <%= @geaket.title %></h2>
+    <div style="float: right; padding-right: 10px;"><%= render :partial => "shared/author", :locals => {:user => @geaket.user} %></div>
+    <div style="clear: both;"></div>
     <div style="padding-right: 10px;">
       <pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: White; min-height: 128px; overflow: auto;" class="prettyprint"><%= @geaket.content %></pre>
     </div>
 <%#= render :partial => "shared/geaket", :locals => { :geaket => @geaket } %>
     <div style="clear: both; font-weight: bold; text-align: right; padding-right: 10px;">
-      <%= @geaket.tags.map{|tag| tag.name}.join(", ") %>
+      <%= !@geaket.tags.empty? ? @geaket.tags.map{|tag| tag.name}.join(", ") : "No Tags" %>
     </div>
   </div>
   <div class="section_footer">
@@ -24,7 +26,7 @@
   <div class="section_header">
   </div>
   <div style="font-family: 'Droid Sans', arial, serif; padding-bottom: 10px;" class="section_content">
-    <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">Comments</h2>
+    <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">Patches</h2>
     <%= render :partial => "shared/comment", :collection => @geaket.children, :as => :geaket %>
   </div>
   <div class="section_footer">

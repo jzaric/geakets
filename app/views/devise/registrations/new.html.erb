@@ -1,18 +1,32 @@
-<h2>Sign up</h2>
+<div style="width: 625px;" class="green_section">
+  <div class="section_header">
+  </div>
+  <div style="font-family: 'Droid Sans', arial, serif;" class="section_content">
+    <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">
+      Sign up</h2>
+    <div style="padding-top: 10px;">
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+        <p><%= f.label :nickname %><br />
+          <%= f.text_field :nickname %></p>
 
-  <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
+        <p><%= f.label :email %><br />
+          <%= f.email_field :email %></p>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+        <p><%= f.label :password %><br />
+          <%= f.password_field :password %></p>
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
+        <p><%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation %></p>
 
-  <p><%= f.submit "Sign up" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+        <p><%= f.submit "Sign up" %></p>
+      <% end %>
+    </div>
+    <div style="clear: both; font-weight: bold; text-align: right; padding-right: 10px;">
+      <%= render :partial => "devise/shared/links" %>
+    </div>
+  </div>
+  <div class="section_footer">
+  </div>
+</div>
