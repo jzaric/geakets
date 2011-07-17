@@ -3,7 +3,11 @@ Geakets::Application.routes.draw do
 
   devise_for :users
 
-  resources :geakets
+  resources :geakets do
+    resources :patches
+  end
+
+  #match 'geakets/:id/patch' => 'geakets#patch', :as => :patch
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

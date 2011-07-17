@@ -106,11 +106,11 @@ div.flash.notice, div.flash.success
     margin: 0 auto;
     padding: 0;
     background: Transparent url(../images/white_transparent_60.png) repeat;
-    -moz-box-shadow: 10px 10px 5px #888;
-    -webkit-box-shadow: 10px 10px 5px #888;
-    box-shadow: 10px 10px 5px #888;
-    border: 1px solid #888;
-    border-top: none;
+    -moz-box-shadow: 0 0 15px #888;
+    -webkit-box-shadow: 0 0 15px #888;
+    box-shadow: 0 0 15px #888;
+    /*border: 1px solid #888;
+    border-top: none;*/
 }
 
 .left_shadow

@@ -21,28 +21,28 @@
     });
 
     $('#editor').qtip({
-       content: "Type code here", // Set the tooltip content to the current corner
-       position: {
-          corner: {
-             tooltip: "bottomRight", // Use the corner...
-             target: "topRight" // ...and opposite corner
-          }
-       },
-       show: {
-          when: false, // Don't specify a show event
-          ready: false // Show the tooltip when ready
-       },
-       hide: false, // Don't specify a hide event
-       style: {
-          border: {
-             //width: 5,
-             radius: 10
-          },
-          //padding: 10,
-          textAlign: 'center',
-          tip: true, // Give it a speech bubble tip with automatic corner detection
-          name: 'cream' // Style it according to the preset 'cream' style
-       }
+      content: "Type code here", // Set the tooltip content to the current corner
+      position: {
+        corner: {
+          tooltip: "bottomRight", // Use the corner...
+          target: "topRight" // ...and opposite corner
+        }
+      },
+      show: {
+        when: false, // Don't specify a show event
+        ready: false // Show the tooltip when ready
+      },
+      hide: false, // Don't specify a hide event
+      style: {
+        border: {
+          //width: 5,
+          radius: 10
+        },
+        //padding: 10,
+        textAlign: 'center',
+        tip: true, // Give it a speech bubble tip with automatic corner detection
+        name: 'cream' // Style it according to the preset 'cream' style
+      }
     });
 
     $('#geaket_title').watermark("Type title here");
@@ -54,7 +54,7 @@
     });
   });
 </script>
-<%= form_for @geaket do |f| %>
+<%= form_for @geaket, :url => geaket_patches_path(@geaket.parent) do |f| %>
   <div style="width: 625px;" class="green_section">
     <div class="section_header">
     </div>
@@ -63,26 +63,29 @@
         Tell it your way...</h2>
       <%= f.error_messages :header_tag => "h3", :header_message => "Not saved!", :message => "See error details bellow:" %>
       <table class="geaket_editor" style="padding-right: 10px; padding-top: 10px; width: 615px;">
-          <tr>
-            <td>Title:</td>
-            <td><%= f.text_field :title %></td>
-          </tr>
-          <tr>
-            <td>Content:</td>
-            <td>
+        <tr>
+          <td>Patching:</td>
+          <td><%= render :partial => "shared/geaket", :locals => { :geaket => @geaket.parent } %></td>
+        </tr>
+        <tr>
+          <td>Title:</td>
+          <td><%= f.text_field :title %></td>
+        </tr>          <tr>
+          <td>Content:</td>
+          <td>
             <pre id="editor" style="background-color: #E8E8E8;"></pre>
-              <%= f.hidden_field :content %>
-            </td>
-          </tr>
-          <tr>
-            <td>Tags:</td>
-            <td><%= f.text_field :tag_list %></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><%= f.submit "Submit" %></td>
-          </tr>
-        </table>
+            <%= f.hidden_field :content %>
+          </td>
+        </tr>
+        <tr>
+          <td>Tags:</td>
+          <td><%= f.text_field :tag_list %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit "Submit" %></td>
+        </tr>
+      </table>
     </div>
     <div class="section_footer">
     </div>

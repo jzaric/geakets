@@ -1,5 +1,5 @@
 class GeaketsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:new, :create]
+  before_filter :authenticate_user!, :only => [:new, :create, :patch]
 
   def index
     
@@ -7,6 +7,7 @@ class GeaketsController < ApplicationController
 
   def show
     @geaket = Geaket.find(params[:id])
+    @patches = @geaket.children.paginate(:per_page => 2, :order => "created_at DESC", :page => params[:page])
   end
 
   def new
@@ -20,6 +21,16 @@ class GeaketsController < ApplicationController
       redirect_to :root
     else
       render 'new'
+    end
+  end
+
+  def patch
+    @geaket = current_user.geakets.create(params[:geaket])
+    if(@geaket.save)
+      flash[:sucess] = "Patch added"
+      redirect_to :root
+    else
+      render 'patch'
     end
   end
 end
