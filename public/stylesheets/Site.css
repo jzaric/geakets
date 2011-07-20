@@ -41,6 +41,21 @@ body
     background: White url(../images/back.jpg) repeat;
 }
 
+h2 > a
+{
+    color: white;
+}
+
+h2 > a:hover
+{
+    text-decoration: underline;
+}
+
+h2 > a:active
+{
+    text-decoration: underline;
+}
+
 a
 {
     color: blue;
@@ -369,4 +384,14 @@ div.flash.notice, div.flash.success
 .author_gravatar
 {
     float: left;
+}
+
+a.vote
+{
+    color: white;
+}
+a.vote:hover > span
+{
+    color: white;
+    text-decoration: underline;
 }

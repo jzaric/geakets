@@ -4,10 +4,14 @@ Geakets::Application.routes.draw do
   devise_for :users
 
   resources :geakets do
+    member do
+      get 'vote'
+    end
     resources :patches
   end
 
-  #match 'geakets/:id/patch' => 'geakets#patch', :as => :patch
+  #match 'geakets/:id/vote' => 'geakets#vote', :as => :vote
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -58,6 +62,7 @@ Geakets::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => "pages#index"
+  match 'latest' => "pages#latest"
 
   # See how all your routes lay out with "rake routes"
 

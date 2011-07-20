@@ -1,12 +1,25 @@
 class GeaketsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:new, :create, :patch]
+  before_filter :authenticate_user!, :only => [:new, :create, :patch, :vote]
 
   def index
     
   end
 
+  def vote
+    @geaket = Geaket.find(params[:id])
+    if @geaket.voters.exists?(current_user)
+      flash[:alert] = "Already voted for this geaket!"
+    else
+      @geaket.voters<<(current_user)
+      flash[:success] = "Voted successfully!"
+    end
+    redirect_to geaket_path(@geaket)
+  end
+
   def show
     @geaket = Geaket.find(params[:id])
+    @geaket.view_count = (@geaket.view_count.nil? ? 0 : @geaket.view_count) + 1
+    @geaket.save
     @patches = @geaket.children.paginate(:per_page => 2, :order => "created_at DESC", :page => params[:page])
   end
 

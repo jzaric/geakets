@@ -14,15 +14,35 @@
     <div style="padding-right: 10px;">
       <pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: White; min-height: 128px; overflow: auto;" class="prettyprint"><%= @geaket.content %></pre>
     </div>
-    <div style="clear: both; font-weight: bold; text-align: right; padding-right: 10px;">
-      <%= !@geaket.tags.empty? ? @geaket.tags.map{|tag| tag.name}.join(", ") : "No Tags" %>
+    <div style="font-weight: bold; padding-right: 10px; position: relative; height: 51px;">
+      <!-- AddThis Button BEGIN -->
+      <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+        <a class="addthis_button_preferred_1"></a>
+        <a class="addthis_button_preferred_2"></a>
+        <a class="addthis_button_preferred_3"></a>
+        <a class="addthis_button_preferred_4"></a>
+        <a class="addthis_button_compact"></a>
+        <a class="addthis_counter addthis_bubble_style"></a>
+      </div>
+      <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+      <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4da4c5a11fb86c47"></script>
+      <!-- AddThis Button END -->
+      <div style="position: absolute; top: 0; right: 10px; text-align: right;">
+        <a class="vote" href="<%= vote_geaket_path(@geaket) %>">
+          <%= image_tag "vote.png" %>
+          <span style="display: inline-block; line-height: 28px; margin-top: 4px; padding: 0 0 0 4px; float: right;"><%= pluralize(@geaket.voters.count, "vote") %></span>
+        </a>
+        <div style="clear: both;">
+          <i>tags:</i> <%= !@geaket.tags.empty? ? @geaket.tags.map{|tag| tag.name}.join(", ") : "No Tags" %>
+        </div>
+      </div>
     </div>
     <% if !@geaket.parent.nil? %>
-    <div>
-      Patch for:<br/>
-      <%= render :partial => "shared/geaket", :locals => { :geaket => @geaket.parent } %>
-      <div style="clear: both;"></div>
-    </div>
+      <div style="clear: both; padding-top: 10px;">
+        Patch for:<br/>
+        <%= render :partial => "shared/geaket", :locals => { :geaket => @geaket.parent } %>
+        <div style="clear: both;"></div>
+      </div>
     <% end %>
   </div>
   <div class="section_footer">
@@ -31,16 +51,20 @@
 <div style="width: 625px; margin-top: 10px;" class="gray_section">
   <div class="section_header">
   </div>
-  <div style="font-family: 'Droid Sans', arial, serif; padding-bottom: 10px;" class="section_content">
+  <div style="font-family: 'Droid Sans', arial, serif; padding-bottom: 10px; color: white;" class="section_content">
     <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">Patches </h2>
     <div style="text-align: center; font-size: 22px;">
       <%= link_to "Add Patch!", new_geaket_patch_path(:geaket_id => @geaket.id), :class => "action" %>
       <hr style="margin-right: 10px;"/>
     </div>
-    <%= render :partial => "shared/comment", :collection => @patches, :as => :geaket %>
-    <div style="color: white; text-align: center;">
-      <%= will_paginate(@patches) %>
-    </div>
+    <% if @patches.empty? %>
+      No patches yet
+    <% else %>
+      <%= render :partial => "shared/comment", :collection => @patches, :as => :geaket %>
+      <div style="color: white; text-align: center;">
+        <%= will_paginate(@patches) %>
+      </div>
+    <% end %>
   </div>
   <div class="section_footer">
   </div>
