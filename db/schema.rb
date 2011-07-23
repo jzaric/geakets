@@ -60,4 +60,6 @@ ActiveRecord::Schema.define(:version => 20110711215341) do
     t.integer "geaket_id"
   end
 
+  add_index "votes", ["user_id", "geaket_id"], :name => "index_votes_on_user_id_and_geaket_id", :unique => true
+
 end

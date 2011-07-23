@@ -1,8 +1,3 @@
-<script type="text/javascript">
-  $(function(){
-    prettyPrint();
-  });
-</script>
 <div style="width: 625px;" class="green_section">
   <div class="section_header">
   </div>
@@ -27,12 +22,13 @@
       <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
       <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4da4c5a11fb86c47"></script>
       <!-- AddThis Button END -->
-      <div style="position: absolute; top: 0; right: 10px; text-align: right;">
+      <div style="position: absolute; top: 0; right: 10px;">
+        <span style="display: inline-block; line-height: 28px; margin-top: 4px; padding: 0 0 0 4px; float: left;"><%= pluralize(@geaket.view_count, "view") %>&nbsp;/&nbsp;</span>
         <a class="vote" href="<%= vote_geaket_path(@geaket) %>">
-          <%= image_tag "vote.png" %>
-          <span style="display: inline-block; line-height: 28px; margin-top: 4px; padding: 0 0 0 4px; float: right;"><%= pluralize(@geaket.voters.count, "vote") %></span>
+          <%= image_tag "vote.png", :style => "float: left;" %>
+          <span style="display: inline-block; line-height: 28px; margin-top: 4px; padding: 0 0 0 4px;"><%= pluralize(@geaket.voters.count, "vote") %></span>
         </a>
-        <div style="clear: both;">
+        <div style="clear: both; text-align: right;">
           <i>tags:</i> <%= !@geaket.tags.empty? ? @geaket.tags.map{|tag| tag.name}.join(", ") : "No Tags" %>
         </div>
       </div>

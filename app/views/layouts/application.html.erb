@@ -16,6 +16,7 @@
     <%= csrf_meta_tag %>
     <script type="text/javascript">
       $(function(){
+        prettyPrint();
         $('.geaket_subject').shorten({width: 170});
         $('.geaket_user').shorten({width: 120});
       });
@@ -32,6 +33,15 @@
             <div style="position: relative;">
               <a href="/">
                 <img src="/images/Geaketslogo.png" style="border: none;" /></a>
+<pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: White; overflow: auto; position: absolute; left: 235px; top: 5px; margin: 0;" class="prettyprint">
+site.message("Hello visitor!");
+if(!visitor.canSee("rounded borders")){
+  visitor.getLost(); // :)
+}
+if(visitor == "programmer" && visitor.isCreative()){
+  visitor.haveFun();
+}
+</pre>
               <div id="componentDiv" style="position: absolute; top: 10px; right: 0;">
                 <% if user_signed_in? %>
                   <%= link_to('Sign out', destroy_user_session_path, :method => 'delete', :class => "action") %>
@@ -57,15 +67,14 @@
                   </div>
                   <div class="section_content" style="font-family: 'Droid Sans', arial, serif;">
                     <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">Tags</h2>
-                    <div style="padding-top: 10px; width: 280px; color: White;">
+                    <div style="padding-top: 5px; width: 280px; color: White;">
                       <ul id="tags">
                       <% popular_tags.each do |tag| %>
-                        <li><a href="#" class="tag<%= tag_level(tag) %>"><%= tag.name %></a></li>
+                        <li><span style="font-weight: bold;" class="tag<%= tag_level(tag) %>"><%= tag.name %></span></li>
                       <% end %>
                       </ul>
                     </div>
                     <div style="clear: both; font-weight: bold; text-align: right; padding-right: 10px;">
-                      <span style="font-size: 14pt; color: #fff; margin: 0; padding: 0; cursor: pointer;" onclick="loadMoreTopics();">View more...</span>
                     </div>
                   </div>
                   <div class="section_footer">

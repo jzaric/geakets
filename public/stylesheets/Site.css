@@ -56,6 +56,12 @@ h2 > a:active
     text-decoration: underline;
 }
 
+h2 > a.current
+{
+    text-decoration: underline;
+    font-size: 1.2em;
+}
+
 a
 {
     color: blue;

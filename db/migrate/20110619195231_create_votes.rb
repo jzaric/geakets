@@ -4,6 +4,7 @@ class CreateVotes < ActiveRecord::Migration
       t.integer :user_id
       t.integer :geaket_id
     end
+    add_index(:votes, [:user_id, :geaket_id], :unique => true)
   end
 
   def self.down
