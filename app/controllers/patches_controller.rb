@@ -3,11 +3,12 @@ class PatchesController < ApplicationController
   def new
     @geaket = Geaket.new
     @geaket.parent = Geaket.find(params[:geaket_id])
-    @geaket.title = "Patch: #{@geaket.parent.title}"
+    #@geaket.title = "Patch"
   end
 
   def create
     @geaket = current_user.geakets.create(params[:geaket])
+    @geaket.title = "Patch"
     @geaket.parent = Geaket.find(params[:geaket_id])
     if @geaket.save
       flash[:success] = "Patch added!"

@@ -1,9 +1,15 @@
-<div style="padding: 5px; margin-right: 10px; margin-bottom: 10px; background-color: White; -moz-border-radius: 6px; border-radius: 6px; border: 1px solid Gray; color: Black;">
+<div style="padding: 5px; margin-bottom: 10px; background-color: White; -moz-border-radius: 6px; border-radius: 6px; border: 1px solid Gray; color: Black;">
   <div style="float: right;"><%= time_ago_in_words(geaket.created_at) %> ago</div>
   <div style="color: #00358b; font-weight: bold; font-size: 16px; overflow:hidden;"><a href="<%= geaket_path(geaket) %>" class="geaket_subject" style="width: 150px;"><%= geaket.title %></a></div>
+  <% unless geaket.parent.nil? %>
+  <div>
+    for <%= link_to geaket.parent.title, geaket_path(geaket.parent) %>
+  </div>
+  <% else %>
   <div style="font-size: small; color: gray; clear: both;">
     <%= !geaket.tags.empty? ? geaket.tags.map{|tag| tag.name}.join(", ") : "No Tags" %>
   </div>
+  <% end %>
   <pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: whitesmoke; overflow: auto;" class="prettyprint"><%= geaket.content %></pre>
   <div style="float: left;">
     <span style="color: #000;"><%= pluralize(geaket.voters.count, "vote") %></span>|<span style=""><%= pluralize(geaket.children.count, "patch") %>|<span style="color: #666;"><%= pluralize(geaket.view_count, "view") %></span>

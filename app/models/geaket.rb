@@ -15,16 +15,18 @@ class Geaket < ActiveRecord::Base
   after_create :insert_tags
 
   def insert_tags
-    self.tag_list.split(',').each do |tag_item|
-      tag_item.strip!
-      tag_item.split(' ').each do |word|
-        word.strip!
-        unless word.empty?
-          tag = Tag.find_by_name(word)
-          if tag.nil?
-            self.tags.create(:name => word)
-          else
-            self.tags<<(tag)
+    unless self.tag_list.nil?
+      self.tag_list.split(',').each do |tag_item|
+        tag_item.strip!
+        tag_item.split(' ').each do |word|
+          word.strip!
+          unless word.empty?
+            tag = Tag.find_by_name(word)
+            if tag.nil?
+              self.tags.create(:name => word)
+            else
+              self.tags<<(tag)
+            end
           end
         end
       end
