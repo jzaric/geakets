@@ -1,7 +1,7 @@
 class Geaket < ActiveRecord::Base
   attr_accessor :tag_list
 
-  validates :title, :presence => true, :length => { :maximum => 32 }
+  validates :title, :presence => true, :length => { :maximum => 64 }
   validates :content, :presence => true, :length => { :maximum => 255 }
 
   belongs_to :user
@@ -15,13 +15,18 @@ class Geaket < ActiveRecord::Base
   after_create :insert_tags
 
   def insert_tags
-    self.tag_list.split(",").each do |tmp|
-      tmp.strip!
-      tag = Tag.find_by_name(tmp)
-      if tag.nil?
-        self.tags.create(:name => tmp)
-      else
-        self.tags<<(tag)
+    self.tag_list.split(',').each do |tag_item|
+      tag_item.strip!
+      tag_item.split(' ').each do |word|
+        word.strip!
+        unless word.empty?
+          tag = Tag.find_by_name(word)
+          if tag.nil?
+            self.tags.create(:name => word)
+          else
+            self.tags<<(tag)
+          end
+        end
       end
     end
   end

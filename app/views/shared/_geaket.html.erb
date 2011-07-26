@@ -1,9 +1,17 @@
-<div style="width: 193px; height: 80px; margin-right: 10px; margin-bottom: 10px; background-color: White; float: left; -moz-border-radius: 6px; border-radius: 6px; border: 1px solid Black;">
-  <div style="padding: 5px;">
-    <div style="color: #00358b; font-weight: bold; font-size: 16px; overflow:hidden;"><a href="<%= geaket_path(geaket) %>" class="geaket_subject" style="width: 150px;"><%= geaket.title %></a></div>
+<div style="padding: 5px; margin-right: 10px; margin-bottom: 10px; background-color: White; -moz-border-radius: 6px; border-radius: 6px; border: 1px solid Gray; color: Black;">
+  <div style="float: right;"><%= time_ago_in_words(geaket.created_at) %> ago</div>
+  <div style="color: #00358b; font-weight: bold; font-size: 16px; overflow:hidden;"><a href="<%= geaket_path(geaket) %>" class="geaket_subject" style="width: 150px;"><%= geaket.title %></a></div>
+  <div style="font-size: small; color: gray; clear: both;">
+    <%= !geaket.tags.empty? ? geaket.tags.map{|tag| tag.name}.join(", ") : "No Tags" %>
+  </div>
+  <pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: whitesmoke; overflow: auto;" class="prettyprint"><%= geaket.content %></pre>
+  <div style="float: left;">
+    <span style="color: #000;"><%= pluralize(geaket.voters.count, "vote") %></span>|<span style=""><%= pluralize(geaket.children.count, "patch") %>|<span style="color: #666;"><%= pluralize(geaket.view_count, "view") %></span>
+  </div>
+  <div style="float: right;">
     <%= gravatar_image_tag geaket.user.email, :class => :author_gravatar, :gravatar => { :size => 50 }, :style => "float: left;" %>
     <div style="color: #00358b; font-size: 14px; line-height: 18px; margin-left: 54px;" class="geaket_user">by <%= geaket.user.nickname %></div>
-    <div style="color: #666; font-size: 11pt; line-height: 12pt; margin-left: 54px;"><%= pluralize(geaket.view_count, "view") %></div>
-    <div style="color: #000; font-size: 13pt; line-height: 14pt; margin-left: 54px;"><%= pluralize(geaket.voters.count, "vote") %></div>
+    <div style="color: #00358b; font-size: 14px; line-height: 18px; margin-left: 54px;"><%= pluralize(geaket.user.geakets.count, "geaket") %></div>
   </div>
+  <div style="clear: both;"></div>
 </div>

@@ -18,6 +18,7 @@
       $(function(){
         prettyPrint();
         $('.geaket_subject').shorten({width: 170});
+        $('.geaket_tags').shorten({width: 170});
         $('.geaket_user').shorten({width: 120});
       });
     </script>
@@ -33,15 +34,15 @@
             <div style="position: relative;">
               <a href="/">
                 <img src="/images/Geaketslogo.png" style="border: none;" /></a>
-<pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: White; overflow: auto; position: absolute; left: 235px; top: 5px; margin: 0;" class="prettyprint">
-site.message("Hello visitor!");
-if(!visitor.canSee("rounded borders")){
-  visitor.getLost(); // :)
-}
-if(visitor == "programmer" && visitor.isCreative()){
-  visitor.haveFun();
-}
-</pre>
+<%#*<pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: White; overflow: auto; position: absolute; left: 235px; top: 5px; margin: 0;" class="prettyprint">%>
+<%#*site.message("Hello visitor!");%>
+<%#*if(!visitor.canSee("rounded borders")){%>
+  <%#*visitor.getLost(); // :)%>
+<%#*}%>
+<%#*if(visitor == "programmer" && visitor.isCreative()){%>
+  <%#*visitor.haveFun();%>
+<%#*}%>
+<%#*</pre>%>
               <div id="componentDiv" style="position: absolute; top: 10px; right: 0;">
                 <% if user_signed_in? %>
                   <%= link_to('Sign out', destroy_user_session_path, :method => 'delete', :class => "action") %>
@@ -50,7 +51,7 @@ if(visitor == "programmer" && visitor.isCreative()){
                 <% end %>
               </div>
               <div style="position: absolute; bottom: 0; right: 0; text-align: right; color: #676767; font-weight: bold; font-size: 20px;">
-                <%= link_to 'About', about_path, :class => "action" %>
+                <%#= link_to 'About', about_path, :class => "action" %>
               </div>
             </div>
             <div>
@@ -70,7 +71,7 @@ if(visitor == "programmer" && visitor.isCreative()){
                     <div style="padding-top: 5px; width: 280px; color: White;">
                       <ul id="tags">
                       <% popular_tags.each do |tag| %>
-                        <li><span style="font-weight: bold;" class="tag<%= tag_level(tag) %>"><%= tag.name %></span></li>
+                        <li><span style="font-weight: bold; text-decoration: underline;" class="tag<%= tag_level(tag) %>"><%= tag.name %></span></li>
                       <% end %>
                       </ul>
                     </div>
