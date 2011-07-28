@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711215341) do
+ActiveRecord::Schema.define(:version => 20110728222201) do
 
   create_table "geakets", :force => true do |t|
     t.integer  "user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20110711215341) do
     t.integer  "view_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "special"
   end
 
   create_table "geakets_tags", :id => false, :force => true do |t|

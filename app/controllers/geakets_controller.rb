@@ -20,7 +20,7 @@ class GeaketsController < ApplicationController
     @geaket = Geaket.find(params[:id])
     @geaket.view_count = (@geaket.view_count.nil? ? 0 : @geaket.view_count) + 1
     @geaket.save
-    @patches = @geaket.children.paginate(:per_page => 2, :order => "created_at DESC", :page => params[:page])
+    @patches = @geaket.children.paginate(:per_page => 10, :order => "created_at DESC", :page => params[:page])
   end
 
   def new

@@ -3,11 +3,9 @@
   </div>
   <div style="font-family: 'Droid Sans', arial, serif;" class="section_content">
     <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">
-      <%= link_to_unless_current "Awesomest", root_path do link_to "Awesomest", root_path, :class => "current" end %>&nbsp;|&nbsp;<%= link_to_unless_current "Latest", latest_path do link_to "Latest", latest_path, :class => "current" end %>
+      <%= link_to_unless_current "Latest", root_path do link_to "Latest", root_path, :class => "current" end %>&nbsp;|&nbsp;<%= link_to_unless_current "Awesomest", awesomest_path do link_to "Awesomest", awesomest_path, :class => "current" end %>
     </h2>
-    <div style="padding-top: 10px; padding-right: 10px;">
-      <%= render :partial => "shared/geaket", :collection => @geakets %>
-    </div>
+    <%= render :partial => "shared/geaket", :collection => @geakets, :locals => { :margin_top => 10 } %>
     <div style="clear: both; font-weight: bold; text-align: right; padding-right: 10px;">
       &nbsp;<%= will_paginate(@geakets) %>
     </div>

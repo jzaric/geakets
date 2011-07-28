@@ -160,7 +160,7 @@ div.flash.notice, div.flash.success
 
 .green_section > .section_content
 {
-    padding: 0 0 0 10px;
+    padding: 0 10px 0 10px;
     background-color: #8CC63F;
     color: White;
 }
@@ -179,7 +179,7 @@ div.flash.notice, div.flash.success
 
 .gray_section > .section_content
 {
-    padding: 0 0 0 10px;
+    padding: 0 10px 0 10px;
     background-color: #676767;
 }
 
@@ -197,7 +197,7 @@ div.flash.notice, div.flash.success
 
 .orange_section > .section_content
 {
-    padding: 0 0 0 10px;
+    padding: 0 10px 0 10px;
     background-color: #F05A22;
 }
 

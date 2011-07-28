@@ -1,18 +1,37 @@
-<div style="padding: 5px; margin-bottom: 10px; background-color: White; -moz-border-radius: 6px; border-radius: 6px; border: 1px solid Gray; color: Black;">
-  <div style="float: right;"><%= time_ago_in_words(geaket.created_at) %> ago</div>
-  <div style="color: #00358b; font-weight: bold; font-size: 16px; overflow:hidden;"><a href="<%= geaket_path(geaket) %>" class="geaket_subject" style="width: 150px;"><%= geaket.title %></a></div>
-  <% unless geaket.parent.nil? %>
-  <div>
-    for <%= link_to geaket.parent.title, geaket_path(geaket.parent) %>
+<div style="padding: 5px; margin-top: <%= defined?(margin_top) ? margin_top : 0 %>px; background-color: <%= geaket.special? ? "#efffef" : "White" %>; -moz-border-radius: 6px; border-radius: 6px; border: 1px solid Gray; color: Black;">
+  <div style="float: right; text-align: right;">
+    <div><%= time_ago_in_words(geaket.created_at) %> ago</div>
+    <div style="font-size: small; font-weight: bold;"><%= "Marked as funny" if geaket.special? %></div>
   </div>
-  <% else %>
-  <div style="font-size: small; color: gray; clear: both;">
-    <%= !geaket.tags.empty? ? geaket.tags.map{|tag| tag.name}.join(", ") : "No Tags" %>
+  <div style="color: #00358b; font-size: 16px; overflow:hidden;">
+    <a href="<%= geaket_path(geaket) %>" class="geaket_subject" style="width: 150px;"><%= geaket.title %></a>
+    <% unless geaket.parent.nil? %>
+      <div>
+        for <%= link_to geaket.parent.title, geaket_path(geaket.parent) %>
+      </div>
+    <% else %>
+      <div style="font-size: small; color: gray; clear: both;">
+        <%= !geaket.tags.empty? ? geaket.tags.map{|tag| tag.name}.join(", ") : "No Tags" %>
+      </div>
+    <% end %>
   </div>
-  <% end %>
-  <pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: whitesmoke; overflow: auto;" class="prettyprint"><%= geaket.content %></pre>
-  <div style="float: left;">
-    <span style="color: #000;"><%= pluralize(geaket.voters.count, "vote") %></span>|<span style=""><%= pluralize(geaket.children.count, "patch") %>|<span style="color: #666;"><%= pluralize(geaket.view_count, "view") %></span>
+  <pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: whitesmoke; overflow: auto; clear: both;" class="prettyprint"><%= geaket.content %></pre>
+  <div style="float: left; width: 50%;">
+    <span style="color: #000;"><%= pluralize(geaket.voters.count, "vote") %></span>|<span style=""><%= link_to pluralize(geaket.children.count, "patch"), geaket_path(geaket) %></span>|<span style="color: #666;"><%= pluralize(geaket.view_count, "view") %></span>
+    <% if defined?(render_share) && render_share == true %>
+      <!-- AddThis Button BEGIN -->
+      <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="padding-top: 5px;">
+        <a class="addthis_button_preferred_1"></a>
+        <a class="addthis_button_preferred_2"></a>
+        <a class="addthis_button_preferred_3"></a>
+        <a class="addthis_button_preferred_4"></a>
+        <a class="addthis_button_compact"></a>
+        <a class="addthis_counter addthis_bubble_style"></a>
+      </div>
+      <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+      <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4da4c5a11fb86c47"></script>
+      <!-- AddThis Button END -->
+    <% end %>
   </div>
   <div style="float: right;">
     <%= gravatar_image_tag geaket.user.email, :class => :author_gravatar, :gravatar => { :size => 50 }, :style => "float: left;" %>

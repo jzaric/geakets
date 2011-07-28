@@ -67,10 +67,14 @@
           <td>Patching:</td>
           <td><%= render :partial => "shared/geaket", :locals => { :geaket => @geaket.parent } %></td>
         </tr>
-        <%#*<tr>%>
-          <%#*<td>Title:</td>%>
-          <%#*<td><%= f.text_field :title </td>%>
-        <%#*</tr>%>
+  <%#*<tr>%>
+  <%#*<td>Title:</td>%>
+  <%#*<td><%= f.text_field :title </td>%>
+  <%#*</tr>%>
+        <tr>
+          <td></td>
+          <td><%= f.check_box :special %><%= f.label(:special, "I believe this geaket is funny") %></td>
+        </tr>
         <tr>
           <td>Content:</td>
           <td>
@@ -78,10 +82,10 @@
             <%= f.hidden_field :content %>
           </td>
         </tr>
-        <%#*<tr>%>
-          <%#*<td>Tags:</td>%>
-          <%#*<td><%= f.text_field :tag_list </td>%>
-        <%#*</tr>%>
+  <%#*<tr>%>
+  <%#*<td>Tags:</td>%>
+  <%#*<td><%= f.text_field :tag_list </td>%>
+  <%#*</tr>%>
         <tr>
           <td></td>
           <td><%= f.submit "Submit" %></td>
