@@ -1,4 +1,6 @@
 class GeaketsController < ApplicationController
+  include ActionView::Helpers::TextHelper
+  
   before_filter :authenticate_user!, :only => [:new, :create, :patch, :vote]
 
   def index
@@ -6,14 +8,17 @@ class GeaketsController < ApplicationController
   end
 
   def vote
-    @geaket = Geaket.find(params[:id])
-    if @geaket.voters.exists?(current_user)
-      flash[:alert] = "Already voted for this geaket!"
+    if user_signed_in?
+      @geaket = Geaket.find(params[:id])
+      if @geaket.voters.exists?(current_user)
+        render :json => { :msg => "Already voted for this geaket!" }
+      else
+        @geaket.voters<<(current_user)
+        render :json => { :success => true, :msg => "Voted successfully!", :label => pluralize(@geaket.voters.count, "vote") }
+      end
     else
-      @geaket.voters<<(current_user)
-      flash[:success] = "Voted successfully!"
+      render :json => { :msg => "Not signed in!"}
     end
-    redirect_to geaket_path(@geaket)
   end
 
   def show

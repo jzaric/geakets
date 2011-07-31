@@ -20,6 +20,20 @@
         $('.geaket_subject').shorten({width: 170});
         $('.geaket_tags').shorten({width: 170});
         $('.geaket_user').shorten({width: 120});
+        $(document).ajaxError(function(event, jqXHR, ajaxSettings, thrownError){
+          alert(thrownError);
+        });
+        $('a.vote').click(function(e){
+          e.preventDefault();
+          var aVote = $(this);
+          $.getJSON($(this).attr('href'), function(data){
+            if(data.success){
+              $(aVote).find(".vote_label").text(data.label);
+            }
+            else
+              alert(data.msg);
+          });
+        });
       });
     </script>
   </head>

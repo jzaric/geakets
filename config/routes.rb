@@ -3,6 +3,8 @@ Geakets::Application.routes.draw do
 
   devise_for :users
 
+  match 'users/:id/geakets' => "users#geakets", :as => :user_geakets
+
   resources :geakets do
     member do
       get 'vote'

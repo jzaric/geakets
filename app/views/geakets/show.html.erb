@@ -14,10 +14,12 @@
     <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0 0 5px 0;"><span style="line-height: 31px;">Patches</span><%= link_to "Add patch!", new_geaket_patch_path(:geaket_id => @geaket.id), :class => "action", :style => "float: right;" %></h2>
     <hr/>
     <% if @patches.empty? %>
+    <div style="text-align: center;">
       No patches yet
+    </div>
     <% else %>
       <%= render :partial => "shared/geaket", :collection => @patches, :as => :geaket, :locals => { :margin_top => 10 } %>
-      <div style="color: white; text-align: center;">
+      <div style="color: white; text-align: center; padding-top: 5px;">
         <%= will_paginate(@patches) %>
       </div>
     <% end %>

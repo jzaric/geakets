@@ -392,7 +392,7 @@ div.flash.notice, div.flash.success
     float: left;
 }
 
-a.vote
+/*a.vote
 {
     color: white;
 }
@@ -400,4 +400,4 @@ a.vote:hover > span
 {
     color: white;
     text-decoration: underline;
-}
+}*/

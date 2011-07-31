@@ -1,7 +1,7 @@
-<div style="padding: 5px; margin-top: <%= defined?(margin_top) ? margin_top : 0 %>px; background-color: <%= geaket.special? ? "#efffef" : "White" %>; -moz-border-radius: 6px; border-radius: 6px; border: 1px solid Gray; color: Black;">
+<div style="padding: 5px; margin-top: <%= defined?(margin_top) ? margin_top : 0 %>px; background-color: <%= geaket.special? ? "#EAD3CC" : "White" %>; -moz-border-radius: 6px; border-radius: 6px; border: 1px solid Gray; color: Black;">
   <div style="float: right; text-align: right;">
     <div><%= time_ago_in_words(geaket.created_at) %> ago</div>
-    <div style="font-size: small; font-weight: bold;"><%= "Marked as funny" if geaket.special? %></div>
+    <div style="font-size: small; font-weight: bold; color: #F05A22;"><%= "Marked as funny" if geaket.special? %></div>
   </div>
   <div style="color: #00358b; font-size: 16px; overflow:hidden;">
     <a href="<%= geaket_path(geaket) %>" class="geaket_subject" style="width: 150px;"><%= geaket.title %></a>
@@ -17,7 +17,7 @@
   </div>
   <pre style="-moz-border-radius: 6px; border-radius: 6px; background-color: whitesmoke; overflow: auto; clear: both;" class="prettyprint"><%= geaket.content %></pre>
   <div style="float: left; width: 50%;">
-    <span style="color: #000;"><%= pluralize(geaket.voters.count, "vote") %></span>|<span style=""><%= link_to pluralize(geaket.children.count, "patch"), geaket_path(geaket) %></span>|<span style="color: #666;"><%= pluralize(geaket.view_count, "view") %></span>
+    <a href="<%= vote_geaket_path(geaket) %>" class="vote"><%= image_tag "vote.png", :style => "padding-right: 4px;" %><span class="vote_label"><%= pluralize(geaket.voters.count, "vote") %></span></a>|<span style=""><%= link_to pluralize(geaket.children.count, "patch"), geaket_path(geaket) %></span>|<span style="color: #666;"><%= pluralize(geaket.view_count, "view") %></span>
     <% if defined?(render_share) && render_share == true %>
       <!-- AddThis Button BEGIN -->
       <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="padding-top: 5px;">
@@ -33,10 +33,10 @@
       <!-- AddThis Button END -->
     <% end %>
   </div>
-  <div style="float: right;">
+  <a style="float: right;" href="<%= user_geakets_path(geaket.user) %>">
     <%= gravatar_image_tag geaket.user.email, :class => :author_gravatar, :gravatar => { :size => 50 }, :style => "float: left;" %>
     <div style="color: #00358b; font-size: 14px; line-height: 18px; margin-left: 54px;" class="geaket_user">by <%= geaket.user.nickname %></div>
     <div style="color: #00358b; font-size: 14px; line-height: 18px; margin-left: 54px;"><%= pluralize(geaket.user.geakets.count, "geaket") %></div>
-  </div>
+  </a>
   <div style="clear: both;"></div>
 </div>
