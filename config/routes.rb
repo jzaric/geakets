@@ -1,10 +1,14 @@
 Geakets::Application.routes.draw do
+  #get "tags/geakets"
+
   match 'about' => 'pages#about'
 
   devise_for :users
 
   match 'users/:id/geakets' => "users#geakets", :as => :user_geakets
+  match 'tags/:id/geakets' => "tags#geakets", :as => :tag_geakets
 
+  match 'search/geakets' => "geakets#search", :as => :search_geakets
   resources :geakets do
     member do
       get 'vote'

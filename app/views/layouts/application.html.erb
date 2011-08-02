@@ -3,8 +3,9 @@
   <head>
     <title>Geakets</title>
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css'>
-    <%= stylesheet_link_tag :all %>
+    <%= stylesheet_link_tag :all, :recursive => true %>
     <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" %>
+    <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js" %>
     <%= javascript_include_tag "jquery.shorten.min.js" %>
     <%= javascript_include_tag "jquery.watermark.min.js" %>
     <%= javascript_include_tag "prettify/prettify.js" %>
@@ -15,6 +16,16 @@
 <%#= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
     <script type="text/javascript">
+      alert = function(message){
+        $('<div id="dialog-message" title="Message"><p>' + message + '</p></div>').appendTo('body').dialog({
+          modal: true,
+          buttons: {
+            Ok: function() {
+              $( this ).dialog( "close" );
+            }
+          }
+        });
+      };
       $(function(){
         prettyPrint();
         $('.geaket_subject').shorten({width: 170});
@@ -34,6 +45,10 @@
               alert(data.msg);
           });
         });
+        <% if !params[:q].nil? %>
+        $('input[name=q]').focus();
+        <% end %>
+        $('input[name=q]').watermark("Search geakets...");
       });
     </script>
   </head>
@@ -57,6 +72,9 @@
   <%#*visitor.haveFun();%>
 <%#*}%>
 <%#*</pre>%>
+              <form action="<%= search_geakets_path %>" method="GET" style="position: absolute; left: 244px; top: 75px;">
+                <input type="text" name="q" value="<%= params[:q] %>" style="font-size: 34px; border-radius: 4px; border: none; box-shadow: 0 0 15px #888;" class="search_overlay" autocomplete="off"/>
+              </form>
               <div id="componentDiv" style="position: absolute; top: 10px; right: 0;">
                 <% if user_signed_in? %>
                   <%= link_to('Sign out', destroy_user_session_path, :method => 'delete', :class => "action") %>
@@ -85,7 +103,7 @@
                     <div style="padding-top: 5px; width: 280px; color: White;">
                       <ul id="tags">
                       <% popular_tags.each do |tag| %>
-                        <li><span style="font-weight: bold; text-decoration: underline;" class="tag<%= tag_level(tag) %>"><%= tag.name %></span></li>
+                        <li><%= link_to tag.name, tag_geakets_path(tag), :style => "font-weight: bold; text-decoration: underline;", :class => "tag#{tag_level(tag)}" %></li>
                       <% end %>
                       </ul>
                     </div>
@@ -103,7 +121,7 @@
             </div>
           </div>
           <div style="margin: 10px 0; text-align: center;">
-            <small>Copyright &copy; 2011, <a href="http://infaloom.com">InfAloom</a></small>
+            <small>Copyright &copy; 2011, <a href="http://infaloom.com">InfAloom</a>, Contact: jovi<a href="http://mailhide.recaptcha.net/d?k=01O5ng4DT-wkBB8M_YyUdPkQ==&amp;c=ecWcFC0Ccdy3uXt4WrBj74DjUlXJxSLbBwACvUp2LR0=" onclick="window.open('http://mailhide.recaptcha.net/d?k=01O5ng4DT-wkBB8M_YyUdPkQ==&amp;c=ecWcFC0Ccdy3uXt4WrBj74DjUlXJxSLbBwACvUp2LR0=', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">...</a>@gmail.com</small>
           </div>
         </td>
         <td class="right_shadow">

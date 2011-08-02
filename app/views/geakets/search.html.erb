@@ -1,0 +1,15 @@
+<div style="width: 625px;" class="green_section">
+  <div class="section_header">
+  </div>
+  <div style="font-family: 'Droid Sans', arial, serif;" class="section_content">
+    <h2 style="font-size: 14pt; color: #fff; margin: 0; padding: 0;">
+      Search results for <span style="font-size: 1.5em;"><%= @term %></span>
+    </h2>
+    <%= render :partial => "shared/geaket", :collection => @geakets, :locals => { :margin_top => 10 } %>
+    <div style="clear: both; font-weight: bold; text-align: center; padding-right: 10px; padding-top: 5px;">
+      <%= will_paginate(@geakets) %>
+    </div>
+  </div>
+  <div class="section_footer">
+  </div>
+</div>

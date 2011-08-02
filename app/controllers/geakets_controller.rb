@@ -51,4 +51,9 @@ class GeaketsController < ApplicationController
       render 'patch'
     end
   end
+
+  def search
+    @term = params[:q]
+    @geakets = Geaket.where("title LIKE ? OR content LIKE ?", "%#{@term}%", "%#{@term}%").paginate(:per_page => 10, :order => "created_at DESC", :page => params[:page])
+  end
 end

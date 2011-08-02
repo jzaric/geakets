@@ -392,6 +392,13 @@ div.flash.notice, div.flash.success
     float: left;
 }
 
+.search_overlay
+{
+    background-image: url(../images/search.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
 /*a.vote
 {
     color: white;
