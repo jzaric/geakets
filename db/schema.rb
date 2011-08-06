@@ -10,13 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110728222201) do
+ActiveRecord::Schema.define(:version => 20110806075221) do
 
   create_table "geakets", :force => true do |t|
     t.integer  "user_id"
     t.integer  "parent_id"
     t.string   "title"
-    t.string   "content"
+    t.text     "content"
     t.integer  "view_count"
     t.datetime "created_at"
     t.datetime "updated_at"

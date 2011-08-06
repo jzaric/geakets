@@ -2,7 +2,7 @@ class Geaket < ActiveRecord::Base
   attr_accessor :tag_list
 
   validates :title, :presence => true, :length => { :maximum => 64 }
-  validates :content, :presence => true, :length => { :maximum => 255 }
+  validates :content, :presence => true, :length => { :maximum => 2048 }
 
   belongs_to :user
   
