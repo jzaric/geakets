@@ -34,6 +34,7 @@ html, body
     margin: 0;
     padding: 0;
     font-family: 'Droid Sans', arial, serif;
+    color: gray;
 }
 
 body
@@ -64,14 +65,16 @@ h2 > a.current
 
 a
 {
-    color: blue;
+    color: gray;
     font-weight: bold;
     text-decoration: none;
+    display: inline-block;
 }
 
 a:hover
 {
     text-decoration: underline;
+    color: gray;
 }
 
 a.action
@@ -214,6 +217,11 @@ div.flash.notice, div.flash.success
     color: White;
     text-decoration: none;
     text-align: center;
+}
+
+.add_post:hover
+{
+    color: White;
 }
 
 .story_code_container
@@ -408,3 +416,22 @@ a.vote:hover > span
     color: white;
     text-decoration: underline;
 }*/
+
+.pagination .disabled, .pagination em
+{
+    display: inline-block;
+    border: Gray solid 1px;
+    padding: 2px 5px;
+    background-color: White;
+    color: lightgray;
+}
+
+.pagination a
+{
+    display: inline-block;
+    border: white solid 1px;
+    padding: 2px 5px;
+    background-color: Gray;
+    color: White;
+    text-decoration: none;
+}
